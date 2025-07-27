@@ -87,6 +87,58 @@ body {
   margin-top: var(--spacing-sm);
 }
 
+/* Header Action Buttons */
+.header-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-header {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  min-width: 160px;
+  text-align: center;
+}
+
+.youtube-btn {
+  background: rgba(255, 0, 0, 0.2);
+  color: white;
+  border-color: rgba(255, 0, 0, 0.5);
+}
+
+.youtube-btn:hover {
+  background: #ff0000;
+  border-color: #ff0000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+}
+
+.kofi-btn {
+  background: rgba(255, 95, 95, 0.2);
+  color: white;
+  border-color: rgba(255, 95, 95, 0.5);
+}
+
+.kofi-btn:hover {
+  background: #ff5f5f;
+  border-color: #ff5f5f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 95, 95, 0.4);
+}
+
+.btn-header:active {
+  transform: translateY(0);
+}
+
 /* Grid Layout */
 .main-grid {
   display: grid;
@@ -388,6 +440,16 @@ body {
   
   .header h1 {
     font-size: var(--font-size-xl);
+  }
+  
+  .header-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .btn-header {
+    min-width: 200px;
   }
   
   .notifications {
