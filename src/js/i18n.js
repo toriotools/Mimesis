@@ -412,7 +412,7 @@ class I18nManager {
     if (header && !document.getElementById('language-selector-container')) {
       const langContainer = document.createElement('div');
       langContainer.id = 'language-selector-container';
-      langContainer.style.cssText = 'position: absolute; top: 10px; right: 10px; z-index: 1000;';
+      langContainer.style.cssText = 'position: absolute; top: 20px; right: 20px; z-index: 1000;';
       
       const langDropdown = document.createElement('div');
       langDropdown.className = 'language-dropdown';
@@ -422,40 +422,47 @@ class I18nManager {
       langButton.id = 'language-selector';
       langButton.className = 'language-button';
       langButton.style.cssText = `
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
+        padding: 8px 12px;
+        border-radius: 6px;
         cursor: pointer;
-        font-size: 12px;
+        font-size: 13px;
+        font-weight: 500;
         backdrop-filter: blur(10px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        min-width: 100px;
+        text-align: center;
       `;
       
       const langMenu = document.createElement('div');
       langMenu.className = 'language-menu';
       langMenu.style.cssText = `
         position: absolute;
-        top: 100%;
+        top: calc(100% + 5px);
         right: 0;
-        background: rgba(40, 40, 40, 0.95);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 5px;
-        backdrop-filter: blur(10px);
+        background: rgba(20, 20, 20, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 6px;
+        backdrop-filter: blur(15px);
         display: none;
-        min-width: 120px;
+        min-width: 130px;
         z-index: 1001;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       `;
       
       this.getAvailableLanguages().forEach(lang => {
         const option = document.createElement('div');
         option.className = 'language-option';
         option.style.cssText = `
-          padding: 8px 12px;
+          padding: 10px 15px;
           cursor: pointer;
           color: white;
-          font-size: 12px;
+          font-size: 13px;
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          transition: background-color 0.2s ease;
+          font-weight: 500;
         `;
         option.innerHTML = `${lang.flag} ${lang.name}`;
         option.addEventListener('click', () => {

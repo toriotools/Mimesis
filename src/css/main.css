@@ -66,22 +66,24 @@ body {
 }
 
 .header {
-  background: var(--surface-color);
-  border-bottom: 1px solid var(--border-color);
-  padding: var(--spacing-lg) 0;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: var(--spacing-xl) 0;
+  text-align: center;
+  position: relative;
   margin-bottom: var(--spacing-xl);
 }
 
 .header h1 {
   font-size: var(--font-size-2xl);
   font-weight: 600;
-  color: var(--primary-color);
+  color: white;
   text-align: center;
 }
 
 .header p {
   text-align: center;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.9);
   margin-top: var(--spacing-sm);
 }
 
