@@ -184,11 +184,28 @@ A aplicação é totalmente responsiva e funciona em:
 
 Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
+## ☕ Apoie o Projeto
+
+💡 **Criador independente apaixonado por tecnologia e inteligência artificial!**
+
+Mesmo sem formação como programador, desenvolvo ferramentas usando IA para tornar a vida mais fácil — sempre com foco em acessibilidade e gratuidade.
+
+🌱 Se você acredita em projetos que democratizam a tecnologia, sua doação pode fazer toda a diferença! Com seu apoio, poderei investir em equipamentos melhores e continuar criando soluções abertas para quem mais precisa.
+
+<div align="center">
+
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Apoiar%20projeto-FF5F5F?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/toriotools)
+
+[![YouTube](https://img.shields.io/badge/YouTube-Se%20Inscrever-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@toriotools?sub_confirmation=1)
+
+</div>
+
+🤖 **Obrigado por acompanhar meu trabalho — você já está ajudando só por estar aqui!**
+
 ## 🙏 Agradecimentos
 
-- [Pollinations AI](https://pollinations.ai/) pela API gratuita
-- Comunidade open source pelas inspirações
-- YouTube pela plataforma incrível
+- **[Pollinations AI](https://pollinations.ai)** - Pela incrível API de geração de imagens
+- **Comunidade Open Source** - Por inspirações e ferramentas
 
 ## 📞 Suporte
 

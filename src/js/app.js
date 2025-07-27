@@ -9,6 +9,7 @@ class ThumbnailGenerator {
     this.batchProcessor = new BatchProcessor(this.apiClient);
     this.uiManager = new UIManager();
     this.storageManager = new StorageManager();
+    this.i18nManager = new I18nManager();
     
     this.init();
   }
@@ -19,9 +20,10 @@ class ThumbnailGenerator {
   init() {
     this.bindEvents();
     this.loadSettings();
+    this.i18nManager.init();
     this.updateUI();
     
-    console.log('YouTube Thumbnail Generator initialized');
+    console.log('Mimesis initialized with i18n support');
   }
 
   /**
