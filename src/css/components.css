@@ -420,8 +420,8 @@
 }
 
 .modal-content {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
   max-width: 500px;
   width: 90%;
@@ -436,20 +436,22 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid #e0e0e0;
+  background: #f8f9fa;
 }
 
 .modal-header h3 {
   margin: 0;
-  color: var(--text-primary);
+  color: #2c3e50;
   font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .modal-close {
   background: none;
   border: none;
   font-size: 24px;
-  color: var(--text-secondary);
+  color: #6c757d;
   cursor: pointer;
   padding: 0;
   width: 30px;
@@ -462,30 +464,56 @@
 }
 
 .modal-close:hover {
-  background: var(--bg-hover);
-  color: var(--text-primary);
+  background: #e9ecef;
+  color: #495057;
 }
 
 .modal-body {
-  padding: 20px;
+  padding: 25px;
+  background: #ffffff;
 }
 
 .modal-body p {
-  color: var(--text-secondary);
-  line-height: 1.6;
+  color: #495057;
+  line-height: 1.7;
   margin: 0;
+  font-size: 15px;
 }
 
 .modal-footer {
   display: flex;
   gap: 12px;
   padding: 20px;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid #e0e0e0;
   justify-content: flex-end;
+  background: #f8f9fa;
 }
 
 .modal-footer .btn {
   min-width: 120px;
+  font-weight: 600;
+}
+
+.modal-footer .btn-primary {
+  background: #ff5f5f;
+  color: white;
+  border: none;
+}
+
+.modal-footer .btn-primary:hover {
+  background: #e04545;
+  transform: translateY(-1px);
+}
+
+.modal-footer .btn-secondary {
+  background: #6c757d;
+  color: white;
+  border: none;
+}
+
+.modal-footer .btn-secondary:hover {
+  background: #545b62;
+  transform: translateY(-1px);
 }
 
 /* Language Selector Styles */
@@ -548,6 +576,29 @@
 @media (max-width: 768px) {
   .results-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .modal-content {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .modal-body {
+    padding: 20px;
+  }
+  
+  .modal-body p {
+    font-size: 14px;
+  }
+  
+  .modal-footer {
+    flex-direction: column;
+    padding: 15px 20px;
+  }
+  
+  .modal-footer .btn {
+    min-width: auto;
+    width: 100%;
   }
   
   .summary-stats {
