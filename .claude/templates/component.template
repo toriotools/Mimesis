@@ -1,0 +1,60 @@
+# Template para Componente UI
+
+## Estrutura Base HTML
+```html
+<div class="component-name">
+  <div class="component-header">
+    <h3>Título do Componente</h3>
+  </div>
+  <div class="component-body">
+    <!-- Conteúdo -->
+  </div>
+  <div class="component-footer">
+    <!-- Ações -->
+  </div>
+</div>
+```
+
+## CSS Base
+```css
+.component-name {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px 0;
+}
+
+.component-header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+```
+
+## JavaScript Base
+```javascript
+class ComponentName {
+  constructor(element) {
+    this.element = element;
+    this.init();
+  }
+
+  init() {
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    // Event listeners
+  }
+
+  render() {
+    // Render logic
+  }
+}
+```
+
+## Convenções
+- Classes CSS em kebab-case
+- JavaScript em camelCase
+- Componentes reutilizáveis
+- Props via data attributes

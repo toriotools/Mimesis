@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(where python)",
+      "Bash(where node)",
+      "Bash(npm install)",
+      "Bash(start \"Thumbnail Generator\" cmd /k \"npm run start:node\")",
+      "Bash(npx http-server:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": []
+  }
+}

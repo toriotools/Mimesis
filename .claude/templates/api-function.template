@@ -1,0 +1,52 @@
+# Template para Função de API
+
+## Estrutura Base
+```javascript
+/**
+ * [Descrição da função]
+ * @param {string} prompt - Prompt para geração da imagem
+ * @param {Object} options - Opções adicionais
+ * @returns {Promise<string>} URL da imagem gerada
+ */
+async function generateImage(prompt, options = {}) {
+  try {
+    const {
+      width = 1280,
+      height = 720,
+      seed = null,
+      model = 'flux'
+    } = options;
+
+    const url = buildPollinationsUrl(prompt, { width, height, seed, model });
+    
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`API Error: ${response.status}`);
+    }
+
+    return response.url;
+  } catch (error) {
+    console.error('Error generating image:', error);
+    throw error;
+  }
+}
+
+/**
+ * Constrói URL da Pollinations API
+ */
+function buildPollinationsUrl(prompt, options) {
+  const baseUrl = 'https://image.pollinations.ai/prompt';
+  const encodedPrompt = encodeURIComponent(prompt);
+  const params = new URLSearchParams(options);
+  
+  return `${baseUrl}/${encodedPrompt}?${params.toString()}`;
+}
+```
+
+## Convenções
+- Sempre usar try/catch
+- Validar parâmetros de entrada
+- Logging de erros
+- Timeout handling
+- Retry logic quando apropriado

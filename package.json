@@ -1,0 +1,49 @@
+{
+  "name": "mimesis",
+  "version": "1.0.0",
+  "description": "Mimesis - Gerador de thumbnails para YouTube usando IA da Pollinations. Inspirado na filosofia grega de representação artística.",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "start:node": "npx http-server -p 8000 -c-1",
+    "dev": "npx http-server -p 3000 -c-1 -o",
+    "build": "echo 'No build process needed for vanilla JS'",
+    "lint": "echo 'Linting not configured yet'",
+    "format": "echo 'Formatting not configured yet'"
+  },
+  "keywords": [
+    "youtube",
+    "thumbnail",
+    "generator",
+    "ai",
+    "pollinations",
+    "image-generation",
+    "mimesis",
+    "torio-tools"
+  ],
+  "author": "Tório Tools <contato@toriotools.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toriotools/Mimesis"
+  },
+  "homepage": "https://github.com/toriotools/Mimesis",
+  "bugs": {
+    "url": "https://github.com/toriotools/Mimesis/issues"
+  },
+  "contributors": [
+    {
+      "name": "Tório Tools",
+      "url": "https://toriotools.com"
+    }
+  ],
+  "acknowledgments": {
+    "Pollinations AI": "https://pollinations.ai - API de geração de imagens"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

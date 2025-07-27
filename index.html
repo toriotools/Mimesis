@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimesis - Gerador de Thumbnails AI</title>
+    <meta name="description" content="Mimesis: Gerador de thumbnails para YouTube usando IA da Pollinations. Crie imagens em lote na proporção 16:9 perfeita para seus vídeos.">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/components.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>🎨 Mimesis</h1>
+            <p>Crie thumbnails incríveis para seus vídeos usando IA da Pollinations</p>
+            <small style="opacity: 0.7;">Desenvolvido por <strong>Tório Tools</strong> • Powered by <a href="https://pollinations.ai" target="_blank" style="color: inherit;">Pollinations AI</a></small>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="main-grid">
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Tabs -->
+                <div class="tabs">
+                    <ul class="tab-list">
+                        <li><button class="tab-button active" data-tab="single">Geração Individual</button></li>
+                        <li><button class="tab-button" data-tab="batch">Processamento em Lote</button></li>
+                        <li><button class="tab-button" data-tab="history">Histórico</button></li>
+                    </ul>
+                </div>
+
+                <!-- Single Generation Tab -->
+                <div id="single-tab" class="tab-content active">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Gerar Thumbnail Individual</h2>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="single-prompt" class="form-label">Prompt para a imagem:</label>
+                            <textarea 
+                                id="single-prompt" 
+                                class="form-textarea" 
+                                placeholder="Descreva a imagem que você quer gerar... Ex: Epic mountain landscape at sunset with dramatic clouds"
+                                maxlength="500"
+                            ></textarea>
+                            <small class="text-secondary">Máximo 500 caracteres. Prompts em inglês tendem a ter melhores resultados.</small>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button id="generate-single" class="btn btn-primary btn-lg">
+                                🎨 Gerar Thumbnail
+                            </button>
+                        </div>
+
+                        <!-- Single Result -->
+                        <div id="single-result" class="mt-lg" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <!-- Batch Processing Tab -->
+                <div id="batch-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Processamento em Lote</h2>
+                        </div>
+
+                        <!-- File Upload -->
+                        <div class="form-group">
+                            <label class="form-label">Upload de arquivo com prompts:</label>
+                            <div class="file-upload">
+                                <input type="file" id="file-input" accept=".txt,.csv">
+                                <div class="file-upload-label">
+                                    <span>📁 Clique para selecionar arquivo (.txt ou .csv)</span>
+                                </div>
+                            </div>
+                            <div id="file-info" style="display: none;"></div>
+                        </div>
+
+                        <!-- Manual Input -->
+                        <div class="form-group">
+                            <label for="batch-prompts" class="form-label">Ou digite os prompts (um por linha):</label>
+                            <textarea 
+                                id="batch-prompts" 
+                                class="form-textarea" 
+                                placeholder="Epic mountain landscape at sunset&#10;Modern tech workspace with RGB lighting&#10;Delicious pizza with melted cheese&#10;..."
+                                rows="8"
+                            ></textarea>
+                            <small class="text-secondary">Máximo 100 prompts por lote. Um prompt por linha.</small>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button id="start-batch" class="btn btn-primary btn-lg">
+                                🚀 Iniciar Processamento
+                            </button>
+                            <button id="stop-batch" class="btn btn-secondary" style="display: none;">
+                                ⏹️ Parar
+                            </button>
+                        </div>
+
+                        <!-- Batch Progress -->
+                        <div id="batch-progress" class="mt-lg" style="display: none;"></div>
+
+                        <!-- Batch Results -->
+                        <div id="batch-results" class="mt-lg" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <!-- History Tab -->
+                <div id="history-tab" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Histórico de Gerações</h2>
+                            <button id="clear-history" class="btn btn-outline btn-sm">
+                                🗑️ Limpar Histórico
+                            </button>
+                        </div>
+                        
+                        <div id="history-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Settings Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">⚙️ Configurações</h3>
+                    </div>
+                    
+                    <div class="settings-grid">
+                        <div class="form-group">
+                            <label for="model-select" class="form-label">Modelo de IA:</label>
+                            <select id="model-select" class="form-select">
+                                <option value="flux">Flux (Padrão)</option>
+                                <option value="flux-realism">Flux Realism</option>
+                                <option value="flux-anime">Flux Anime</option>
+                                <option value="flux-3d">Flux 3D</option>
+                                <option value="turbo">Turbo (Rápido)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="delay-input" class="form-label">Delay entre requisições (ms):</label>
+                            <input type="number" id="delay-input" class="form-input" value="1000" min="500" max="5000" step="100">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quality-select" class="form-label">Qualidade:</label>
+                            <select id="quality-select" class="form-select">
+                                <option value="high">Alta</option>
+                                <option value="medium">Média</option>
+                                <option value="low">Baixa</option>
+                            </select>
+                        </div>
+
+                        <button id="save-settings" class="btn btn-primary">
+                            💾 Salvar Configurações
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Actions Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🚀 Ações Rápidas</h3>
+                    </div>
+                    
+                    <div class="action-buttons" style="flex-direction: column;">
+                        <button id="load-examples" class="btn btn-outline">
+                            📝 Carregar Exemplos
+                        </button>
+                        <button id="test-api" class="btn btn-outline">
+                            🔗 Testar API
+                        </button>
+                        <button id="export-settings" class="btn btn-outline">
+                            📤 Exportar Config
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Info Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">ℹ️ Informações</h3>
+                    </div>
+                    
+                    <div class="text-secondary" style="font-size: var(--font-size-sm); line-height: 1.6;">
+                        <p><strong>Dimensões:</strong> 1280x720px (16:9)</p>
+                        <p><strong>Formatos:</strong> JPEG, PNG</p>
+                        <p><strong>API:</strong> Pollinations AI</p>
+                        <p><strong>Rate Limit:</strong> 1 req/segundo</p>
+                        <p><strong>Timeout:</strong> 30 segundos</p>
+                        <p><strong>Máximo:</strong> 100 prompts/lote</p>
+                        <hr style="margin: 12px 0; opacity: 0.3;">
+                        <p style="font-size: 11px; text-align: center;">
+                            <strong>Mimesis v1.0</strong><br>
+                            © 2025 Tório Tools<br>
+                            <a href="https://github.com/toriotools/Mimesis" target="_blank" style="color: inherit; text-decoration: none;">⭐ GitHub</a> • 
+                            <a href="https://pollinations.ai" target="_blank" style="color: inherit; text-decoration: none;">Pollinations</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Carregando...</p>
+        </div>
+    </div>
+
+    <!-- Notifications Container -->
+    <div id="notifications" class="notifications"></div>
+
+    <!-- Status Bar -->
+    <div id="status-bar" class="status-bar">
+Mimesis pronto para criar suas thumbnails! 🎨
+    </div>
+
+    <!-- Scripts -->
+    <script src="src/js/utils.js"></script>
+    <script src="src/js/api.js"></script>
+    <script src="src/js/batch.js"></script>
+    <script src="src/js/ui.js"></script>
+    <script src="src/js/app.js"></script>
+
+    <!-- Tab Functionality -->
+    <script>
+        // Simple tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    button.classList.add('active');
+                    document.getElementById(tabId + '-tab').classList.add('active');
+                });
+            });
+
+            // Load examples functionality
+            document.getElementById('load-examples').addEventListener('click', async () => {
+                try {
+                    const response = await fetch('examples/sample-prompts.txt');
+                    const text = await response.text();
+                    document.getElementById('batch-prompts').value = text;
+                    window.thumbnailGenerator.uiManager.showSuccess('Exemplos carregados!');
+                } catch (error) {
+                    window.thumbnailGenerator.uiManager.showError('Erro ao carregar exemplos');
+                }
+            });
+
+            // Test API functionality
+            document.getElementById('test-api').addEventListener('click', async () => {
+                const api = new PollinationsAPI();
+                window.thumbnailGenerator.uiManager.showLoading('Testando conexão...');
+                
+                try {
+                    const isWorking = await api.testConnection();
+                    if (isWorking) {
+                        window.thumbnailGenerator.uiManager.showSuccess('API funcionando corretamente!');
+                    } else {
+                        window.thumbnailGenerator.uiManager.showError('API não está respondendo');
+                    }
+                } catch (error) {
+                    window.thumbnailGenerator.uiManager.showError('Erro ao testar API: ' + error.message);
+                } finally {
+                    window.thumbnailGenerator.uiManager.hideLoading();
+                }
+            });
+
+            // Clear history functionality
+            document.getElementById('clear-history').addEventListener('click', () => {
+                if (confirm('Tem certeza que deseja limpar todo o histórico?')) {
+                    window.thumbnailGenerator.storageManager.clearHistory();
+                    window.thumbnailGenerator.updateUI();
+                    window.thumbnailGenerator.uiManager.showSuccess('Histórico limpo!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

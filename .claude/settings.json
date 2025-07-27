@@ -1,0 +1,47 @@
+{
+  "project": {
+    "name": "YouTube Thumbnail Generator",
+    "type": "web-app",
+    "version": "1.0.0",
+    "language": "pt-BR"
+  },
+  "codeGeneration": {
+    "style": "modern",
+    "comments": "detailed",
+    "documentation": "jsdoc",
+    "errorHandling": "comprehensive",
+    "testingFramework": "jest"
+  },
+  "aiAssistant": {
+    "personality": "professional",
+    "responseStyle": "detailed-with-examples",
+    "codeExplanation": "step-by-step"
+  },
+  "development": {
+    "environment": "development",
+    "debugLevel": "verbose",
+    "hotReload": true
+  },
+  "qualityAssurance": {
+    "codeCoverage": "80%",
+    "linting": true,
+    "typeChecking": "strict"
+  },
+  "context": {
+    "autoLoad": [
+      ".claude/claude.md",
+      "README.md",
+      "package.json",
+      "src/js/api.js",
+      "src/js/app.js"
+    ],
+    "ignore": [
+      "node_modules",
+      "dist",
+      "build",
+      ".git",
+      "*.log",
+      "generated-images"
+    ]
+  }
+}
