@@ -82,16 +82,16 @@
                 <div id="batch-tab" class="tab-content">
                     <div class="card">
                         <div class="card-header">
-                            <h2 class="card-title">Processamento em Lote</h2>
+                            <h2 class="card-title" data-i18n="batch.title">Processamento em Lote</h2>
                         </div>
 
                         <!-- File Upload -->
                         <div class="form-group">
-                            <label class="form-label">Upload de arquivo com prompts:</label>
+                            <label class="form-label" data-i18n="batch.file.label">Upload de arquivo com prompts:</label>
                             <div class="file-upload">
                                 <input type="file" id="file-input" accept=".txt,.csv">
                                 <div class="file-upload-label">
-                                    <span>📁 Clique para selecionar arquivo (.txt ou .csv)</span>
+                                    <span data-i18n="batch.file.placeholder">📁 Clique para selecionar arquivo (.txt ou .csv)</span>
                                 </div>
                             </div>
                             <div id="file-info" style="display: none;"></div>
@@ -99,22 +99,23 @@
 
                         <!-- Manual Input -->
                         <div class="form-group">
-                            <label for="batch-prompts" class="form-label">Ou digite os prompts (um por linha):</label>
+                            <label for="batch-prompts" class="form-label" data-i18n="batch.manual.label">Ou digite os prompts (um por linha):</label>
                             <textarea 
                                 id="batch-prompts" 
                                 class="form-textarea" 
+                                data-i18n="batch.manual.placeholder"
                                 placeholder="Epic mountain landscape at sunset&#10;Modern tech workspace with RGB lighting&#10;Delicious pizza with melted cheese&#10;..."
                                 rows="8"
                             ></textarea>
-                            <small class="text-secondary">Máximo 100 prompts por lote. Um prompt por linha.</small>
+                            <small class="text-secondary" data-i18n="batch.manual.hint">Máximo 100 prompts por lote. Um prompt por linha.</small>
                         </div>
 
                         <div class="action-buttons">
                             <button id="start-batch" class="btn btn-primary btn-lg">
-                                🚀 Iniciar Processamento
+                                <span data-i18n="batch.start">🚀 Iniciar Processamento</span>
                             </button>
                             <button id="stop-batch" class="btn btn-secondary" style="display: none;">
-                                ⏹️ Parar
+                                <span data-i18n="batch.stop">⏹️ Parar</span>
                             </button>
                         </div>
 
@@ -130,9 +131,9 @@
                 <div id="history-tab" class="tab-content">
                     <div class="card">
                         <div class="card-header">
-                            <h2 class="card-title">Histórico de Gerações</h2>
+                            <h2 class="card-title" data-i18n="history.title">Histórico de Gerações</h2>
                             <button id="clear-history" class="btn btn-outline btn-sm">
-                                🗑️ Limpar Histórico
+                                <span data-i18n="history.clear">🗑️ Limpar Histórico</span>
                             </button>
                         </div>
                         
@@ -146,37 +147,37 @@
                 <!-- Settings Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">⚙️ Configurações</h3>
+                        <h3 class="card-title" data-i18n="settings.title">⚙️ Configurações</h3>
                     </div>
                     
                     <div class="settings-grid">
                         <div class="form-group">
-                            <label for="model-select" class="form-label">Modelo de IA:</label>
+                            <label for="model-select" class="form-label" data-i18n="settings.model">Modelo de IA:</label>
                             <select id="model-select" class="form-select">
-                                <option value="flux">Flux (Padrão)</option>
-                                <option value="flux-realism">Flux Realism</option>
-                                <option value="flux-anime">Flux Anime</option>
-                                <option value="flux-3d">Flux 3D</option>
-                                <option value="turbo">Turbo (Rápido)</option>
+                                <option value="flux" data-i18n="settings.model.flux">Flux (Padrão)</option>
+                                <option value="flux-realism" data-i18n="settings.model.realism">Flux Realism</option>
+                                <option value="flux-anime" data-i18n="settings.model.anime">Flux Anime</option>
+                                <option value="flux-3d" data-i18n="settings.model.3d">Flux 3D</option>
+                                <option value="turbo" data-i18n="settings.model.turbo">Turbo (Rápido)</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="delay-input" class="form-label">Delay entre requisições (ms):</label>
+                            <label for="delay-input" class="form-label" data-i18n="settings.delay">Delay entre requisições (ms):</label>
                             <input type="number" id="delay-input" class="form-input" value="1000" min="500" max="5000" step="100">
                         </div>
 
                         <div class="form-group">
-                            <label for="quality-select" class="form-label">Qualidade:</label>
+                            <label for="quality-select" class="form-label" data-i18n="settings.quality">Qualidade:</label>
                             <select id="quality-select" class="form-select">
-                                <option value="high">Alta</option>
-                                <option value="medium">Média</option>
-                                <option value="low">Baixa</option>
+                                <option value="high" data-i18n="settings.quality.high">Alta</option>
+                                <option value="medium" data-i18n="settings.quality.medium">Média</option>
+                                <option value="low" data-i18n="settings.quality.low">Baixa</option>
                             </select>
                         </div>
 
                         <button id="save-settings" class="btn btn-primary">
-                            💾 Salvar Configurações
+                            <span data-i18n="settings.save">💾 Salvar Configurações</span>
                         </button>
                     </div>
                 </div>
@@ -184,7 +185,7 @@
                 <!-- Quick Actions Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">🚀 Ações Rápidas</h3>
+                        <h3 class="card-title" data-i18n="actions.title">🚀 Ações Rápidas</h3>
                     </div>
                     
                     <div class="action-buttons" style="flex-direction: column;">
@@ -209,22 +210,22 @@
                 <!-- Info Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">ℹ️ Informações</h3>
+                        <h3 class="card-title" data-i18n="info.title">ℹ️ Informações</h3>
                     </div>
                     
                     <div class="text-secondary" style="font-size: var(--font-size-sm); line-height: 1.6;">
-                        <p><strong>Dimensões:</strong> 1280x720px (16:9)</p>
-                        <p><strong>Formatos:</strong> JPEG, PNG</p>
-                        <p><strong>API:</strong> Pollinations AI</p>
-                        <p><strong>Rate Limit:</strong> 1 req/segundo</p>
-                        <p><strong>Timeout:</strong> 30 segundos</p>
-                        <p><strong>Máximo:</strong> 100 prompts/lote</p>
+                        <p data-i18n="info.dimensions"><strong>Dimensões:</strong> 1280x720px (16:9)</p>
+                        <p data-i18n="info.formats"><strong>Formatos:</strong> JPEG, PNG</p>
+                        <p data-i18n="info.api"><strong>API:</strong> Pollinations AI</p>
+                        <p data-i18n="info.ratelimit"><strong>Rate Limit:</strong> 1 req/segundo</p>
+                        <p data-i18n="info.timeout"><strong>Timeout:</strong> 30 segundos</p>
+                        <p data-i18n="info.max"><strong>Máximo:</strong> 100 prompts/lote</p>
                         <hr style="margin: 12px 0; opacity: 0.3;">
                         <p style="font-size: 11px; text-align: center;">
-                            <strong>Mimesis v1.0</strong><br>
-                            © 2025 Tório Tools<br>
-                            <a href="https://github.com/toriotools/Mimesis" target="_blank" style="color: inherit; text-decoration: none;">⭐ GitHub</a> • 
-                            <a href="https://pollinations.ai" target="_blank" style="color: inherit; text-decoration: none;">Pollinations</a>
+                            <strong data-i18n="info.version">Mimesis v1.0</strong><br>
+                            <span data-i18n="info.copyright">© 2025 Tório Tools</span><br>
+                            <a href="https://github.com/toriotools/Mimesis" target="_blank" style="color: inherit; text-decoration: none;" data-i18n="info.github">⭐ GitHub</a> • 
+                            <a href="https://pollinations.ai" target="_blank" style="color: inherit; text-decoration: none;" data-i18n="info.pollinations">Pollinations</a>
                         </p>
                     </div>
                 </div>
@@ -274,7 +275,7 @@ Mesmo sem formação como programador, desenvolvo ferramentas usando IA para tor
 
     <!-- Status Bar -->
     <div id="status-bar" class="status-bar">
-Mimesis pronto para criar suas thumbnails! 🎨
+<span data-i18n="status.ready">Mimesis pronto para criar suas thumbnails! 🎨</span>
     </div>
 
     <!-- Scripts -->

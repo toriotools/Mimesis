@@ -8,6 +8,10 @@ class I18nManager {
     this.currentLanguage = 'pt';
     this.translations = {
       pt: {
+        // Meta
+        'meta.title': 'Mimesis - Gerador de Thumbnails AI',
+        'meta.description': 'Mimesis: Gerador de thumbnails para YouTube usando IA da Pollinations. Crie imagens em lote na proporção 16:9 perfeita para seus vídeos.',
+        
         // Header
         'header.title': 'Mimesis',
         'header.subtitle': 'Crie thumbnails incríveis para seus vídeos usando IA da Pollinations',
@@ -65,12 +69,12 @@ class I18nManager {
         
         // Info
         'info.title': 'ℹ️ Informações',
-        'info.dimensions': 'Dimensões: 1280x720px (16:9)',
-        'info.formats': 'Formatos: JPEG, PNG',
-        'info.api': 'API: Pollinations AI',
-        'info.ratelimit': 'Rate Limit: 1 req/segundo',
-        'info.timeout': 'Timeout: 30 segundos',
-        'info.max': 'Máximo: 100 prompts/lote',
+        'info.dimensions': '<strong>Dimensões:</strong> 1280x720px (16:9)',
+        'info.formats': '<strong>Formatos:</strong> JPEG, PNG',
+        'info.api': '<strong>API:</strong> Pollinations AI',
+        'info.ratelimit': '<strong>Rate Limit:</strong> 1 req/segundo',
+        'info.timeout': '<strong>Timeout:</strong> 30 segundos',
+        'info.max': '<strong>Máximo:</strong> 100 prompts/lote',
         'info.version': 'Mimesis v1.0',
         'info.copyright': '© 2025 Tório Tools',
         'info.github': '⭐ GitHub',
@@ -104,6 +108,10 @@ class I18nManager {
       },
       
       en: {
+        // Meta
+        'meta.title': 'Mimesis - AI Thumbnail Generator',
+        'meta.description': 'Mimesis: Generate amazing YouTube thumbnails using Pollinations AI. Create batch images in perfect 16:9 ratio for your videos.',
+        
         // Header
         'header.title': 'Mimesis',
         'header.subtitle': 'Create amazing thumbnails for your videos using Pollinations AI',
@@ -161,12 +169,12 @@ class I18nManager {
         
         // Info
         'info.title': 'ℹ️ Information',
-        'info.dimensions': 'Dimensions: 1280x720px (16:9)',
-        'info.formats': 'Formats: JPEG, PNG',
-        'info.api': 'API: Pollinations AI',
-        'info.ratelimit': 'Rate Limit: 1 req/second',
-        'info.timeout': 'Timeout: 30 seconds',
-        'info.max': 'Maximum: 100 prompts/batch',
+        'info.dimensions': '<strong>Dimensions:</strong> 1280x720px (16:9)',
+        'info.formats': '<strong>Formats:</strong> JPEG, PNG',
+        'info.api': '<strong>API:</strong> Pollinations AI',
+        'info.ratelimit': '<strong>Rate Limit:</strong> 1 req/second',
+        'info.timeout': '<strong>Timeout:</strong> 30 seconds',
+        'info.max': '<strong>Maximum:</strong> 100 prompts/batch',
         'info.version': 'Mimesis v1.0',
         'info.copyright': '© 2025 Tório Tools',
         'info.github': '⭐ GitHub',
@@ -200,6 +208,10 @@ class I18nManager {
       },
       
       es: {
+        // Meta
+        'meta.title': 'Mimesis - Generador de Miniaturas IA',
+        'meta.description': 'Mimesis: Genera miniaturas increíbles para YouTube usando IA de Pollinations. Crea imágenes en lote en proporción 16:9 perfecta para tus videos.',
+        
         // Header
         'header.title': 'Mimesis',
         'header.subtitle': 'Crea miniaturas increíbles para tus videos usando IA de Pollinations',
@@ -257,12 +269,12 @@ class I18nManager {
         
         // Info
         'info.title': 'ℹ️ Información',
-        'info.dimensions': 'Dimensiones: 1280x720px (16:9)',
-        'info.formats': 'Formatos: JPEG, PNG',
-        'info.api': 'API: Pollinations AI',
-        'info.ratelimit': 'Rate Limit: 1 req/segundo',
-        'info.timeout': 'Timeout: 30 segundos',
-        'info.max': 'Máximo: 100 prompts/lote',
+        'info.dimensions': '<strong>Dimensiones:</strong> 1280x720px (16:9)',
+        'info.formats': '<strong>Formatos:</strong> JPEG, PNG',
+        'info.api': '<strong>API:</strong> Pollinations AI',
+        'info.ratelimit': '<strong>Rate Limit:</strong> 1 req/segundo',
+        'info.timeout': '<strong>Timeout:</strong> 30 segundos',
+        'info.max': '<strong>Máximo:</strong> 100 prompts/lote',
         'info.version': 'Mimesis v1.0',
         'info.copyright': '© 2025 Tório Tools',
         'info.github': '⭐ GitHub',
@@ -371,6 +383,8 @@ class I18nManager {
         } else {
           element.value = translation;
         }
+      } else if (element.tagName === 'OPTION') {
+        element.textContent = translation;
       } else {
         element.innerHTML = translation;
       }
@@ -378,6 +392,9 @@ class I18nManager {
 
     // Atualizar seletor de idioma
     this.updateLanguageSelector();
+    
+    // Atualizar meta tags
+    this.updateMetaTags();
   }
 
   /**
@@ -389,6 +406,31 @@ class I18nManager {
       const currentLang = this.getAvailableLanguages().find(l => l.code === this.currentLanguage);
       selector.innerHTML = `${currentLang.flag} ${currentLang.name}`;
     }
+  }
+
+  /**
+   * Atualiza meta tags da página
+   */
+  updateMetaTags() {
+    // Atualizar title
+    const titleKey = 'meta.title';
+    const titleTranslation = this.translations[this.currentLanguage][titleKey];
+    if (titleTranslation) {
+      document.title = titleTranslation;
+    }
+
+    // Atualizar description
+    const descKey = 'meta.description';
+    const descTranslation = this.translations[this.currentLanguage][descKey];
+    if (descTranslation) {
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', descTranslation);
+      }
+    }
+
+    // Atualizar lang attribute
+    document.documentElement.setAttribute('lang', this.currentLanguage === 'pt' ? 'pt-BR' : this.currentLanguage === 'es' ? 'es-ES' : 'en-US');
   }
 
   /**
